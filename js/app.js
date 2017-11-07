@@ -67,9 +67,15 @@ const checkCards = function() {
 	revealedCards.splice(0);
 }
 
+// Check if all cards are correct pairs
 const checkWin = function() {
 	if (correctPairs.length === 8) {
-		console.log("Congratulations, you're winner");
+		const youWin = `<div class="popup">
+						    <h1>You're Winner</h1>
+							<button type="button">Play Again</button>
+						</div>`
+		$('body').children().slice(0, 2).css('opacity', '0.5');
+		$('body').append(youWin);
 	}
 }
 
