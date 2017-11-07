@@ -19,10 +19,10 @@ const cards = [
 ];
 
 // Global variable for revealed cards
-const revealedCards = [];
+let revealedCards = [];
 
 // Global variable for correct pairs
-const correctPairs = [];
+let correctPairs = [];
 
 // Assign cards to the Game Area
 const assignCards = function() {
@@ -67,6 +67,12 @@ const checkCards = function() {
 	revealedCards.splice(0);
 }
 
+const checkWin = function() {
+	if (correctPairs.length === 8) {
+		console.log("Congratulations, you're winner");
+	}
+}
+
 // Main
 assignCards();
 
@@ -76,4 +82,5 @@ $('.card-back').click(function() {
 	if (revealedCards.length > 1) {
 		checkCards(event.target);
 	}
+	checkWin();
 });
