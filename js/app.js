@@ -26,10 +26,15 @@ let correctPairs = [];
 
 // Assign cards to the Game Area
 const assignCards = function() {
-	let card = $('.card').first();
 	for (let i = 0; i < cards.length; i++) {
-		card.children(':first-child').append(cards[i].html);
-		card = card.next();
+		$('.game-area').append(
+		`<div class="card" id="` + cards[i].id + `">
+			<div class="card-front">` + 
+				cards[i].html + 
+			`</div>
+			<div class="card-back">
+			</div>
+		</div>`);
 	}
 }
 
