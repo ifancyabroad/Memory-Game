@@ -86,10 +86,10 @@ const checkCards = function() {
 	} else {
 		for (let i = 0; i < cards.length; i++) {
 			if ((revealedCards[0] === cards[i].html) && (cards[i].revealed === true)) {
-				flipCard($('#' + cards[i].id).children(':first-child'));
+				setTimeout(flipCard, 1000, ($('#' + cards[i].id).children(':first-child')));
 				cards[i].revealed = false;
 			} else if ((revealedCards[1] === cards[i].html) && (cards[i].revealed === true)) {
-				flipCard($('#' + cards[i].id).children(':first-child'));
+				setTimeout(flipCard, 1000, ($('#' + cards[i].id).children(':first-child')));
 				cards[i].revealed = false;
 			}
 		}
