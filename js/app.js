@@ -111,13 +111,13 @@ const checkWin = function() {
 }
 
 // Main
-//shuffle(cards);
+shuffle(cards);
 assignCards();
 
 $('body').on('click', '.play', function() {
 	$('.modal').remove();
 	resetGame();
-	//shuffle(cards);
+	shuffle(cards);
 	assignCards();
 });
 
