@@ -24,6 +24,31 @@ let revealedCards = [];
 // Global variable for correct pairs
 let correctPairs = [];
 
+// Shuffle function from http://stackoverflow.com/a/2450976
+const shuffle = function(array) {
+    let currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
+// Reset game
+const resetGame = function() {
+	correctPairs.splice(0);
+	revealedCards.splice(0);
+	$('.game-area').empty();
+	cards.forEach(function(card) {
+		card.revealed = false;
+	});
+}
+
 // Assign cards to the Game Area
 const assignCards = function() {
 	for (let i = 0; i < cards.length; i++) {
@@ -47,7 +72,7 @@ const flipCard = function(card) {
 // Add revealed card to the revealed cards array
 const addCard = function(card) {
 	for (let i = 0; i < cards.length; i++) {
-		if ($(card).parent().attr('id') == cards[i].id) {
+		if ($(card).parent().attr('id') === cards[i].id) {
 			cards[i].revealed = true;
 			revealedCards.push(cards[i].html)
 		}
@@ -57,7 +82,7 @@ const addCard = function(card) {
 // Check the revealed cards for matches
 const checkCards = function() {
 	if (revealedCards[0] === revealedCards[1]) {
-		correctPairs.push(revealedCards);
+		correctPairs.push(revealedCards[0]);
 	} else {
 		for (let i = 0; i < cards.length; i++) {
 			if ((revealedCards[0] === cards[i].html) && (cards[i].revealed === true)) {
@@ -75,19 +100,28 @@ const checkCards = function() {
 // Check if all cards are correct pairs
 const checkWin = function() {
 	if (correctPairs.length === 8) {
-		const youWin = `<div class="popup">
-						    <h1>You're Winner</h1>
-							<button type="button">Play Again</button>
+		const youWin = `<div class="modal">
+							<div class="popup">
+								<h1>You're Winner</h1>
+								<button type="button" class="play">Play Again</button>
+							</div>
 						</div>`
-		$('body').children().slice(0, 2).css('opacity', '0.5');
 		$('body').append(youWin);
 	}
 }
 
 // Main
+//shuffle(cards);
 assignCards();
 
-$('.card-back').click(function() {
+$('body').on('click', '.play', function() {
+	$('.modal').remove();
+	resetGame();
+	//shuffle(cards);
+	assignCards();
+});
+
+$('.game-area').on('click', '.card-back', function() {
 	flipCard(event.target);
 	addCard(event.target);
 	if (revealedCards.length > 1) {
