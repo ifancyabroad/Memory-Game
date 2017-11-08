@@ -56,4 +56,11 @@ h1 {
 	height: 40%;
 	width: 40%;
 	text-align: center;
+	animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
 }
