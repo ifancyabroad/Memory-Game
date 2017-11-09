@@ -68,6 +68,16 @@ const flipCard = function(card) {
 	$(card).parent().toggleClass('flipped');
 }
 
+// Shake animation for incorrect guesses
+const shakeCard = function(card) {
+	$(card).animate({left: '+=10px'}, 50);
+    $(card).animate({left: '-=20px'}, 75);
+    $(card).animate({left: '+=20px'}, 75);
+	$(card).animate({left: '-=20px'}, 75);
+    $(card).animate({left: '+=20px'}, 75);
+    $(card).animate({left: '-=10px'}, 50);
+	}
+
 // Add revealed card to the revealed cards array
 const addCard = function(card) {
 	for (let i = 0; i < cards.length; i++) {
@@ -88,6 +98,7 @@ const checkCards = function() {
 				setTimeout(flipCard, 1000, ($('#' + cards[i].id).children(':first-child')));
 				cards[i].revealed = false;
 			} else if ((revealedCards[1] === cards[i].html) && (cards[i].revealed === true)) {
+				setTimeout(shakeCard, 400, ($('#' + cards[i].id).children(':first-child')));
 				setTimeout(flipCard, 1000, ($('#' + cards[i].id).children(':first-child')));
 				cards[i].revealed = false;
 			}
