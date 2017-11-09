@@ -70,12 +70,12 @@ const flipCard = function(card) {
 
 // Shake animation for incorrect guesses
 const shakeCard = function(card) {
-	$(card).animate({left: '+=10px'}, 50);
-    $(card).animate({left: '-=20px'}, 75);
-    $(card).animate({left: '+=20px'}, 75);
-	$(card).animate({left: '-=20px'}, 75);
-    $(card).animate({left: '+=20px'}, 75);
-    $(card).animate({left: '-=10px'}, 50);
+	$(card).parent().animate({left: '+=10px'}, 50);
+    $(card).parent().animate({left: '-=20px'}, 75);
+    $(card).parent().animate({left: '+=20px'}, 75);
+	$(card).parent().animate({left: '-=20px'}, 75);
+    $(card).parent().animate({left: '+=20px'}, 75);
+    $(card).parent().animate({left: '-=10px'}, 50);
 	}
 
 // Add revealed card to the revealed cards array
