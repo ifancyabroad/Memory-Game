@@ -65,8 +65,7 @@ const assignCards = function() {
 
 // Flip the card over on the Game Area
 const flipCard = function(card) {
-	$(card).toggle();
-	$(card).siblings().toggle();
+	$(card).parent().toggleClass('flipped');
 }
 
 // Add revealed card to the revealed cards array

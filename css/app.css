@@ -23,6 +23,8 @@ h1 {
 	height: 20%;
 	width: 20%;
 	margin: 10px;
+	transition: transform 0.5s;
+	transform-style: preserve-3d;
 }
 
 .card-back {
@@ -30,6 +32,7 @@ h1 {
 	position: absolute;
 	height: 100%;
 	width: 100%;
+	backface-visibility: hidden;
 }
 
 .card-front {
@@ -37,7 +40,12 @@ h1 {
 	position: absolute;
 	height: 100%;
 	width: 100%;
-	display: none;
+	transform: rotateY(180deg);
+	backface-visibility: hidden;
+}
+
+.card.flipped {
+	transform: rotateY(180deg);
 }
 
 .modal {
