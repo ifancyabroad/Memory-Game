@@ -24,6 +24,16 @@ let revealedCards = [];
 // Global variable for correct pairs
 let correctPairs = [];
 
+// Global variables for move counter
+let moveCounter = 0;
+const t = $('#counter').text();
+
+// Increment move counter and update screen
+const incCounter = function() {
+	moveCounter++;
+	$('#counter').text(t + moveCounter);
+}
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 const shuffle = function(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -135,6 +145,7 @@ $('.game-area').on('click', '.card-back', function() {
 	flipCard(event.target);
 	addCard(event.target);
 	if (revealedCards.length > 1) {
+		incCounter();
 		checkCards(event.target);
 	}
 	checkWin();
