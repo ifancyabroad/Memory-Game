@@ -26,12 +26,32 @@ let correctPairs = [];
 
 // Global variables for move counter
 let moveCounter = 0;
-const t = $('#counter').text();
+const t = $('.counter').text();
 
 // Increment move counter and update screen
 const incCounter = function() {
 	moveCounter++;
-	$('#counter').text(t + moveCounter);
+	$('.counter').text(t + moveCounter);
+}
+
+// Update star rating
+const updateStar = function() {
+	if (moveCounter % 5 === 0) {
+		let stars = $('.star-rating').children();
+		let currentStar;
+		for (let i = stars.length; i >= 0; i--) {
+			if ($(stars[i]).attr('class') === 'fa fa-star') {
+				currentStar = $(stars[i]);
+				currentStar.attr('class', 'fa fa-star-half-o');
+				break;
+			}
+			else if ($(stars[i]).attr('class') === 'fa fa-star-half-o') {
+				currentStar = $(stars[i]);
+				currentStar.attr('class', 'fa fa-star-o');
+				break;
+			}
+		}
+	}
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -146,6 +166,7 @@ $('.game-area').on('click', '.card-back', function() {
 	addCard(event.target);
 	if (revealedCards.length > 1) {
 		incCounter();
+		updateStar();
 		checkCards(event.target);
 	}
 	checkWin();
