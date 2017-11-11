@@ -20,8 +20,14 @@ h1 {
 	justify-content: center;
 }
 
-p {
-	margin: 5px 20px;
+ul {
+	list-style-type: none;
+	margin: 5px auto;
+	padding: 0;
+}
+
+li {
+	margin: 0 20px;
 }
 
 .game-area {
@@ -49,6 +55,10 @@ p {
 	height: 100%;
 	width: 100%;
 	backface-visibility: hidden;
+}
+
+.card-back:hover {
+	cursor: pointer;
 }
 
 .card-front {

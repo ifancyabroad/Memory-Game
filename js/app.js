@@ -35,7 +35,7 @@ const updateCounter = function() {
 
 // Update star rating
 const updateStar = function() {
-	if (moveCounter % 5 === 0) {
+	if (moveCounter >= 10 && moveCounter % 5 === 0) {
 		let stars = $('.star-rating').children();
 		let currentStar;
 		for (let i = stars.length; i >= 0; i--) {
