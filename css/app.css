@@ -9,7 +9,19 @@ body {
 
 h1 {
 	text-align: center;
-	margin: 20px;
+	margin-top: 20px;
+	margin-bottom: 5px;
+	font-size: 1.5em;
+}
+
+.controls {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+p {
+	margin: 5px 20px;
 }
 
 .game-area {
