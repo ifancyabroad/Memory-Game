@@ -28,9 +28,8 @@ let correctPairs = [];
 let moveCounter = 0;
 const t = $('.counter').text();
 
-// Increment move counter and update screen
-const incCounter = function() {
-	moveCounter++;
+// Update screen with move counter
+const updateCounter = function() {
 	$('.counter').text(t + moveCounter);
 }
 
@@ -54,6 +53,14 @@ const updateStar = function() {
 	}
 }
 
+// Reset star rating
+const resetStars = function() {
+	let stars = $('.star-rating').children();
+	for (let star of stars) {
+		$(star).attr('class', 'fa fa-star');
+	}
+}
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 const shuffle = function(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -71,6 +78,9 @@ const shuffle = function(array) {
 
 // Reset game
 const resetGame = function() {
+	moveCounter = 0;
+	updateCounter();
+	resetStars();
 	correctPairs.splice(0);
 	revealedCards.splice(0);
 	$('.game-area').empty();
@@ -153,9 +163,16 @@ const checkWin = function() {
 // Main
 shuffle(cards);
 assignCards();
+updateCounter();
 
 $('body').on('click', '.play', function() {
 	$('.modal').remove();
+	resetGame();
+	shuffle(cards);
+	assignCards();
+});
+
+$('.reset').click(function() {
 	resetGame();
 	shuffle(cards);
 	assignCards();
@@ -165,7 +182,8 @@ $('.game-area').on('click', '.card-back', function() {
 	flipCard(event.target);
 	addCard(event.target);
 	if (revealedCards.length > 1) {
-		incCounter();
+		moveCounter++;
+		updateCounter();
 		updateStar();
 		checkCards(event.target);
 	}
