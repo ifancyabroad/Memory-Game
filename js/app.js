@@ -28,6 +28,12 @@ let correctPairs = [];
 let moveCounter = 0;
 const t = $('.counter').text();
 
+// Global variables for timer
+let minutes = 0;
+let seconds = 0;
+let mSeconds = 0;
+let time;
+
 // Update screen with move counter
 const updateCounter = function() {
 	$('.counter').text(t + moveCounter);
@@ -61,6 +67,41 @@ const resetStars = function() {
 	}
 }
 
+// Timer
+const timer = function() {
+	mSeconds++
+	if (mSeconds >= 100) {
+		seconds++
+		mSeconds = 0;
+		if (seconds >= 60) {
+			minutes++
+			seconds = 0;
+		}	
+	}
+	
+	$('.timer').text((minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds ? (seconds > 9 ? seconds : "0" + seconds) : "00") + ":" + (mSeconds > 9 ? mSeconds : "0" + mSeconds));
+
+	startTimer();
+}
+
+// Start the timer
+const startTimer = function() {
+	time = setTimeout(timer, 10);
+}
+
+// Reset the timer
+const resetTimer = function() {
+	$('.timer').text('00:00:00');
+	minutes = 0;
+	seconds = 0;
+	mSeconds = 0;
+}
+
+// Stop the timer
+const stopTimer = function() {
+	clearTimeout(time);
+}
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 const shuffle = function(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -87,6 +128,7 @@ const resetGame = function() {
 	cards.forEach(function(card) {
 		card.revealed = false;
 	});
+	resetTimer();
 }
 
 // Assign cards to the Game Area
@@ -150,12 +192,16 @@ const checkCards = function() {
 // Check if all cards are correct pairs
 const checkWin = function() {
 	if (correctPairs.length === 8) {
-		const youWin = `<div class="modal">
-							<div class="popup">
-								<h1>You're Winner</h1>
-								<button type="button" class="play">Play Again</button>
-							</div>
-						</div>`
+		stopTimer();
+		const youWin = 
+		`<div class="modal">
+			<div class="popup">
+				<h1>You're Winner</h1>
+				<p>` + $('.star-rating').html() + `</p>
+				<p>` + $('.timer').text() + `</p>
+				<button type="button" class="play">Play Again</button>
+			</div>
+		</div>`
 		$('body').append(youWin);
 	}
 }
@@ -164,12 +210,14 @@ const checkWin = function() {
 shuffle(cards);
 assignCards();
 updateCounter();
+startTimer();
 
 $('body').on('click', '.play', function() {
 	$('.modal').remove();
 	resetGame();
 	shuffle(cards);
 	assignCards();
+	startTimer();
 });
 
 $('.reset').click(function() {
