@@ -1,21 +1,21 @@
 // Global variable for all cards
 const cards = [
-{revealed: false, html: "<h2>A</h2>", id: "card-one"},
-{revealed: false, html: "<h2>A</h2>", id: "card-two"},
-{revealed: false, html: "<h2>B</h2>", id: "card-three"},
-{revealed: false, html: "<h2>B</h2>", id: "card-four"},
-{revealed: false, html: "<h2>C</h2>", id: "card-five"},
-{revealed: false, html: "<h2>C</h2>", id: "card-six"},
-{revealed: false, html: "<h2>D</h2>", id: "card-seven"},
-{revealed: false, html: "<h2>D</h2>", id: "card-eight"},
-{revealed: false, html: "<h2>E</h2>", id: "card-nine"},
-{revealed: false, html: "<h2>E</h2>", id: "card-ten"},
-{revealed: false, html: "<h2>F</h2>", id: "card-eleven"},
-{revealed: false, html: "<h2>F</h2>", id: "card-twelve"},
-{revealed: false, html: "<h2>G</h2>", id: "card-thirteen"},
-{revealed: false, html: "<h2>G</h2>", id: "card-fourteen"},
-{revealed: false, html: "<h2>H</h2>", id: "card-fifteen"},
-{revealed: false, html: "<h2>H</h2>", id: "card-sixteen"}
+{revealed: false, html: "<img src='images/pikachu.png' alt='Pikachu pokemon'>", id: "card-one"},
+{revealed: false, html: "<img src='images/pikachu.png' alt='Pikachu pokemon'>", id: "card-two"},
+{revealed: false, html: "<img src='images/squirtle.png' alt='Squirtle pokemon'>", id: "card-three"},
+{revealed: false, html: "<img src='images/squirtle.png' alt='Squirtle pokemon'>", id: "card-four"},
+{revealed: false, html: "<img src='images/meowth.png' alt='Meowth pokemon'>", id: "card-five"},
+{revealed: false, html: "<img src='images/meowth.png' alt='Meowth pokemon'>", id: "card-six"},
+{revealed: false, html: "<img src='images/vaporeon.png' alt='Vaporeon pokemon'>", id: "card-seven"},
+{revealed: false, html: "<img src='images/vaporeon.png' alt='Vaporeon pokemon'>", id: "card-eight"},
+{revealed: false, html: "<img src='images/moltres.png' alt='Moltres pokemon'>", id: "card-nine"},
+{revealed: false, html: "<img src='images/moltres.png' alt='Moltres pokemon'>", id: "card-ten"},
+{revealed: false, html: "<img src='images/jigglypuff.png' alt='Jigglypuff pokemon'>", id: "card-eleven"},
+{revealed: false, html: "<img src='images/jigglypuff.png' alt='Jigglypuff pokemon'>", id: "card-twelve"},
+{revealed: false, html: "<img src='images/lapras.png' alt='Lapras pokemon'>", id: "card-thirteen"},
+{revealed: false, html: "<img src='images/lapras.png' alt='Lapras pokemon'>", id: "card-fourteen"},
+{revealed: false, html: "<img src='images/dragonite.png' alt='Dragonite pokemon'>", id: "card-fifteen"},
+{revealed: false, html: "<img src='images/dragonite.png' alt='Dragonite pokemon'>", id: "card-sixteen"}
 ];
 
 // Global variable for revealed cards
@@ -207,7 +207,7 @@ const checkWin = function() {
 }
 
 // Main
-shuffle(cards);
+// shuffle(cards);
 assignCards();
 updateCounter();
 startTimer();
