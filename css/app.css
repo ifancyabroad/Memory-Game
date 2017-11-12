@@ -9,7 +9,7 @@ body {
 	/*background-color: white;*/
 	background-position: center;
 	background-repeat: no-repeat;
-	font-family: Arial, sans-serif;
+	font-family: 'Short Stack', cursive;
 	min-width: 500px;
 }
 
@@ -33,11 +33,13 @@ ul {
 }
 
 li {
-	margin: 0 20px;
+	text-align: center;
+	margin: 0 10px;
+	min-width: 85px;
 }
 
 .star-rating {
-	color: #fd0;
+	color: #a02500;
 }
 
 .reset:hover {
