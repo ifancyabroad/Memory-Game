@@ -1,8 +1,10 @@
+/*Set all margins and padding to 0*/
 . {
 	margin: 0;
 	padding: 0;
 }
 
+/*Set background image and page font*/
 body {
 	background-image: url("../images/background.png");
 	background-size: cover;
@@ -13,6 +15,7 @@ body {
 	min-width: 500px;
 }
 
+/*Page header*/
 h1 {
 	text-align: center;
 	margin-top: 20px;
@@ -20,6 +23,7 @@ h1 {
 	font-size: 1.5em;
 }
 
+/*Controls/display section*/
 .controls {
 	display: flex;
 	flex-wrap: wrap;
@@ -47,6 +51,7 @@ li {
 	color: white;
 }
 
+/*Game area section*/
 .game-area {
 	background-color: rgba(120, 120, 120, 0.5);
 	border-radius: 5px;
@@ -109,6 +114,7 @@ img {
 	transform: rotateY(180deg);
 }
 
+/*Modal for when game is won*/
 .modal {
 	background-color: rgba(0, 0, 0, 0.4);
 	position: fixed;
@@ -130,6 +136,7 @@ img {
     animation-duration: 0.6s;
 }
 
+/*Animations section*/
 @keyframes zoom {
     from {transform:scale(0)} 
     to {transform:scale(1)}

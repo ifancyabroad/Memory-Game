@@ -211,6 +211,7 @@ shuffle(cards);
 assignCards();
 updateCounter();
 
+// Play again after winning
 $('body').on('click', '.play', function() {
 	$('.modal').remove();
 	resetGame();
@@ -218,6 +219,7 @@ $('body').on('click', '.play', function() {
 	assignCards();
 });
 
+// Reset the game
 $('.reset').click(function() {
 	stopTimer();
 	resetGame();
@@ -225,6 +227,7 @@ $('.reset').click(function() {
 	assignCards();
 });
 
+// Flip a card
 $('.game-area').on('click', '.card-back', function() {
 	flipCard(event.target);
 	addCard(event.target);
