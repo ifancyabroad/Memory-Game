@@ -196,8 +196,8 @@ const checkWin = function() {
 		const youWin = 
 		`<div class="modal">
 			<div class="popup">
-				<h1>You're Winner</h1>
-				<p>` + $('.star-rating').html() + `</p>
+				<h2>Congratulations!</h2>
+				<p class="star-rating">` + $('.star-rating').html() + `</p>
 				<p>` + $('.timer').text() + `</p>
 				<button type="button" class="play">Play Again</button>
 			</div>
@@ -207,20 +207,19 @@ const checkWin = function() {
 }
 
 // Main
-// shuffle(cards);
+shuffle(cards);
 assignCards();
 updateCounter();
-startTimer();
 
 $('body').on('click', '.play', function() {
 	$('.modal').remove();
 	resetGame();
 	shuffle(cards);
 	assignCards();
-	startTimer();
 });
 
 $('.reset').click(function() {
+	stopTimer();
 	resetGame();
 	shuffle(cards);
 	assignCards();
@@ -234,6 +233,9 @@ $('.game-area').on('click', '.card-back', function() {
 		updateCounter();
 		updateStar();
 		checkCards(event.target);
+		checkWin();
 	}
-	checkWin();
+	if (moveCounter === 0) {
+		startTimer();
+	}
 });
