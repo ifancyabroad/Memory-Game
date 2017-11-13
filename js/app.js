@@ -197,6 +197,7 @@ const checkWin = function() {
 		`<div class="modal">
 			<div class="popup">
 				<h2>Congratulations!</h2>
+				<img src="images/winner.gif" alt="Pikachu and Eevee high five each other and wave">
 				<p class="star-rating">` + $('.star-rating').html() + `</p>
 				<p>` + $('.timer').text() + `</p>
 				<button type="button" class="play">Play Again</button>

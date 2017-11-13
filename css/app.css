@@ -136,6 +136,10 @@ img {
     animation-duration: 0.6s;
 }
 
+.popup img {
+	border-radius: 50%;
+}
+
 /*Animations section*/
 @keyframes zoom {
     from {transform:scale(0)} 
