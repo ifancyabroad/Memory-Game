@@ -147,7 +147,7 @@ const assignCards = function() {
 
 // Flip the card over on the Game Area
 const flipCard = function(card) {
-	$(card).parent().toggleClass('flipped');
+	$(card).toggleClass('flipped');
 }
 
 // Shake animation for incorrect guesses
@@ -189,11 +189,11 @@ const checkCards = function() {
 	} else {
 		for (let i = 0; i < cards.length; i++) {
 			if ((revealedCards[0] === cards[i].html) && (cards[i].revealed === true)) {
-				setTimeout(flipCard, 1000, ($('#' + cards[i].id).children(':first-child')));
+				setTimeout(flipCard, 1000, ($('#' + cards[i].id)));
 				cards[i].revealed = false;
 			} else if ((revealedCards[1] === cards[i].html) && (cards[i].revealed === true)) {
 				setTimeout(shakeCard, 400, ($('#' + cards[i].id)));
-				setTimeout(flipCard, 1000, ($('#' + cards[i].id).children(':first-child')));
+				setTimeout(flipCard, 1000, ($('#' + cards[i].id)));
 				cards[i].revealed = false;
 			}
 		}
@@ -242,7 +242,7 @@ $('.reset').click(function() {
 
 // Flip a card
 $('.game-area').on('click', '.card-back', function() {
-	flipCard(event.target);
+	flipCard($(event.target).parent());
 	addCard(event.target);
 	if (revealedCards.length > 1) {
 		moveCounter++;
