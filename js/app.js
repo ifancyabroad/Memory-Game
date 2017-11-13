@@ -152,13 +152,18 @@ const flipCard = function(card) {
 
 // Shake animation for incorrect guesses
 const shakeCard = function(card) {
-	$(card).parent().animate({left: '+=10px'}, 50);
-    $(card).parent().animate({left: '-=20px'}, 75);
-    $(card).parent().animate({left: '+=20px'}, 75);
-	$(card).parent().animate({left: '-=20px'}, 75);
-    $(card).parent().animate({left: '+=20px'}, 75);
-    $(card).parent().animate({left: '-=10px'}, 50);
-	}
+	$(card).animate({left: '+=10px'}, 50);
+    $(card).animate({left: '-=20px'}, 75);
+    $(card).animate({left: '+=20px'}, 75);
+	$(card).animate({left: '-=20px'}, 75);
+    $(card).animate({left: '+=20px'}, 75);
+    $(card).animate({left: '-=10px'}, 50);
+}
+
+// Enlarge animation for correct guesses
+const enlargeCard = function(card) {
+	$(card).toggleClass('enlarge');
+}	
 
 // Add revealed card to the revealed cards array
 const addCard = function(card) {
@@ -173,6 +178,13 @@ const addCard = function(card) {
 // Check the revealed cards for matches
 const checkCards = function() {
 	if (revealedCards[0] === revealedCards[1]) {
+		for (let card of cards) {
+			if ((revealedCards[0] === card.html) && (card.revealed === true)) {
+				setTimeout(enlargeCard, 400, ($('#' + card.id).children(':first-child')));;
+			} else if ((revealedCards[1] === card.html) && (card.revealed === true)) {
+				setTimeout(enlargeCard, 400, ($('#' + card.id).children(':first-child')));;
+			}
+		}
 		correctPairs.push(revealedCards[0]);
 	} else {
 		for (let i = 0; i < cards.length; i++) {
@@ -180,7 +192,7 @@ const checkCards = function() {
 				setTimeout(flipCard, 1000, ($('#' + cards[i].id).children(':first-child')));
 				cards[i].revealed = false;
 			} else if ((revealedCards[1] === cards[i].html) && (cards[i].revealed === true)) {
-				setTimeout(shakeCard, 400, ($('#' + cards[i].id).children(':first-child')));
+				setTimeout(shakeCard, 400, ($('#' + cards[i].id)));
 				setTimeout(flipCard, 1000, ($('#' + cards[i].id).children(':first-child')));
 				cards[i].revealed = false;
 			}
@@ -236,7 +248,7 @@ $('.game-area').on('click', '.card-back', function() {
 		moveCounter++;
 		updateCounter();
 		updateStar();
-		checkCards(event.target);
+		checkCards();
 		checkWin();
 	}
 	if (moveCounter === 0) {
