@@ -178,6 +178,7 @@ const addCard = function(card) {
 // Check the revealed cards for matches
 const checkCards = function() {
 	if (revealedCards[0] === revealedCards[1]) {
+		correctPairs.push(revealedCards[0]);
 		for (let card of cards) {
 			if ((revealedCards[0] === card.html) && (card.revealed === true)) {
 				setTimeout(enlargeCard, 400, ($('#' + card.id).children(':first-child')));;
@@ -185,7 +186,6 @@ const checkCards = function() {
 				setTimeout(enlargeCard, 400, ($('#' + card.id).children(':first-child')));;
 			}
 		}
-		correctPairs.push(revealedCards[0]);
 	} else {
 		for (let i = 0; i < cards.length; i++) {
 			if ((revealedCards[0] === cards[i].html) && (cards[i].revealed === true)) {
