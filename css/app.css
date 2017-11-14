@@ -12,7 +12,6 @@ body {
 	background-position: center;
 	background-repeat: no-repeat;
 	font-family: 'Short Stack', cursive;
-	min-width: 500px;
 }
 
 /*Page header*/
@@ -162,4 +161,26 @@ img {
 	0%	{transform:scale(1) rotateY(180deg)}
 	75% {transform:scale(1.2) rotateY(180deg)}
 	100%{transform:scale(1) rotateY(180deg)}
+}
+
+@media screen and (max-width: 525px), (max-height: 525px) {
+	.game-area {
+		height: 300px;
+		width: 300px;
+	}
+	
+	.card {
+		height: 18%;
+		width: 18%;
+	}
+	
+	li {
+		font-size: 0.7em;
+		min-width: 60px;
+		margin: 0 5px;
+	}
+	
+	.reset {
+		min-width: 40px;
+	}
 }
