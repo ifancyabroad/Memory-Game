@@ -241,7 +241,7 @@ $('.reset').click(function() {
 });
 
 // Flip a card
-$('.game-area').on('click', '.card-back', function() {
+$('.game-area').on('click', '.card-back', function(event) {
 	flipCard($(event.target).parent());
 	addCard(event.target);
 	if (revealedCards.length > 1) {
