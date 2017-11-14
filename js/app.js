@@ -41,9 +41,11 @@ const updateCounter = function() {
 
 // Update star rating
 const updateStar = function() {
+	// First deduction on 10 moves, then every 5
 	if (moveCounter >= 10 && moveCounter % 5 === 0) {
 		let stars = $('.star-rating').children();
 		let currentStar;
+		// Iterate backwards through stars and alter class as necessary
 		for (let i = stars.length; i > 0; i--) {
 			if ($(stars[i]).attr('class') === 'fa fa-star') {
 				currentStar = $(stars[i]);
@@ -69,6 +71,7 @@ const resetStars = function() {
 
 // Timer
 const timer = function() {
+	// Convert miliseconds into seconds and seconds into minutes
 	mSeconds++
 	if (mSeconds >= 100) {
 		seconds++
@@ -78,9 +81,11 @@ const timer = function() {
 			seconds = 0;
 		}	
 	}
-	
+
+	// Display timer on the screen
 	$('.timer').text((minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds ? (seconds > 9 ? seconds : "0" + seconds) : "00") + ":" + (mSeconds > 9 ? mSeconds : "0" + mSeconds));
 
+	// Repeat the function indefinitely
 	startTimer();
 }
 
@@ -119,20 +124,26 @@ const shuffle = function(array) {
 
 // Reset game
 const resetGame = function() {
+	// Reset move counter and rating to original state
 	moveCounter = 0;
 	updateCounter();
 	resetStars();
+	// Take all cards out of arrays
 	correctPairs.splice(0);
 	revealedCards.splice(0);
+	// Empty the game area
 	$('.game-area').empty();
+	// Set all cards back to unrevealed status
 	cards.forEach(function(card) {
 		card.revealed = false;
 	});
+	// Reset the timer back to 0
 	resetTimer();
 }
 
 // Assign cards to the Game Area
 const assignCards = function() {
+	// Iteratate through cards array adding them to the game area 
 	for (let i = 0; i < cards.length; i++) {
 		$('.game-area').append(
 		`<div class="card" id="` + cards[i].id + `">
@@ -168,6 +179,7 @@ const enlargeCard = function(card) {
 // Add revealed card to the revealed cards array
 const addCard = function(card) {
 	for (let i = 0; i < cards.length; i++) {
+		// Find which card in the array matches the revealed card in the DOM and add it to the revealed array
 		if ($(card).parent().attr('id') === cards[i].id) {
 			cards[i].revealed = true;
 			revealedCards.push(cards[i].html)
@@ -177,8 +189,10 @@ const addCard = function(card) {
 
 // Check the revealed cards for matches
 const checkCards = function() {
+	// If the HTML of the two cards matches, add the HTML to the correctPairs array
 	if (revealedCards[0] === revealedCards[1]) {
 		correctPairs.push(revealedCards[0]);
+		// Iterate through the cards array to find which cards to animate
 		for (let card of cards) {
 			if ((revealedCards[0] === card.html) && (card.revealed === true)) {
 				setTimeout(enlargeCard, 400, ($('#' + card.id).children(':first-child')));;
@@ -186,7 +200,9 @@ const checkCards = function() {
 				setTimeout(enlargeCard, 400, ($('#' + card.id).children(':first-child')));;
 			}
 		}
+	// If HTML of the two cards does not match, flip them back over and empty the revealed cards array
 	} else {
+		// Iterate through the cards array to find which cards to animate
 		for (let i = 0; i < cards.length; i++) {
 			if ((revealedCards[0] === cards[i].html) && (cards[i].revealed === true)) {
 				setTimeout(flipCard, 1000, ($('#' + cards[i].id)));
@@ -203,6 +219,7 @@ const checkCards = function() {
 
 // Check if all cards are correct pairs
 const checkWin = function() {
+	// Once there are 8 items in the correctPairs array, bring up the congratulations popup
 	if (correctPairs.length === 8) {
 		stopTimer();
 		const youWin = 
@@ -219,31 +236,35 @@ const checkWin = function() {
 	}
 }
 
-// Main
+// Functions to run when the app is first loaded
 shuffle(cards);
 assignCards();
 updateCounter();
 
-// Play again after winning
+// Event listener for 'Play Again' button
 $('body').on('click', '.play', function() {
+	// Remove the modal and reset the game
 	$('.modal').remove();
 	resetGame();
 	shuffle(cards);
 	assignCards();
 });
 
-// Reset the game
+// Event listener for the 'Reset' button
 $('.reset').click(function() {
+	// Stop the timer and reset the game
 	stopTimer();
 	resetGame();
 	shuffle(cards);
 	assignCards();
 });
 
-// Flip a card
+// Event listener for flipping over a card
 $('.game-area').on('click', '.card-back', function(event) {
+	// Flips the card over and adds it to the revealedCards array
 	flipCard($(event.target).parent());
 	addCard(event.target);
+	// If it is the second card flipped, update the moves, rating and check if there is a match
 	if (revealedCards.length > 1) {
 		moveCounter++;
 		updateCounter();
@@ -251,6 +272,7 @@ $('.game-area').on('click', '.card-back', function(event) {
 		checkCards();
 		checkWin();
 	}
+	// Start the timer if it is the first card flipped
 	if (moveCounter === 0) {
 		startTimer();
 	}
