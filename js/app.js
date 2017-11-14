@@ -44,7 +44,7 @@ const updateStar = function() {
 	if (moveCounter >= 10 && moveCounter % 5 === 0) {
 		let stars = $('.star-rating').children();
 		let currentStar;
-		for (let i = stars.length; i >= 0; i--) {
+		for (let i = stars.length; i > 0; i--) {
 			if ($(stars[i]).attr('class') === 'fa fa-star') {
 				currentStar = $(stars[i]);
 				currentStar.attr('class', 'fa fa-star-half-o');
