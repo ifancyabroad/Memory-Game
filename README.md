@@ -16,7 +16,7 @@ Some the **challenges** faced while developing the application are as follows:
 - Testing the app across different devices and browsers
 
 ## Installation
-To install the app simply clone/download this repository and open index.html in your browser.
+To install the app simply clone/download this repository and open index.html in your browser or alternatively it can be played at the following [GitHub page](https://ifancyabroad.github.io/Arcade-Game/).
 
 ## Instructions
 1. Click a card to flip it over
@@ -24,9 +24,9 @@ To install the app simply clone/download this repository and open index.html in 
 3. Repeat above steps until all cards are revealed
 
 ## Dependancies
-- jQuery (JavaScript library found [here](https://jquery.com))
-- Font Awesome (font and CSS toolkit found [here](http://fontawesome.io/))
-- Google Fonts (font library found [here](https://fonts.google.com/))
+- _jQuery_ (JavaScript library found [here](https://jquery.com))
+- _Font Awesome_ (font and CSS toolkit found [here](http://fontawesome.io/))
+- _Google Fonts_ (font library found [here](https://fonts.google.com/))
 
 ## Licence
 ### MIT License
